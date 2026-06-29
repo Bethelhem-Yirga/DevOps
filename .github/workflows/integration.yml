@@ -9,13 +9,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Add this environment variable section
+    env:
+      ACTIONS_NODE_VERSION: '20' # Forces the runner to use Node.js 20 for actions
 
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '22.x' # Or '20.x', the LTS version you prefer
+        node-version: '22.x'
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
