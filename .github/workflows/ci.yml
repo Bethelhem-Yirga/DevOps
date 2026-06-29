@@ -1,0 +1,38 @@
+# Name of your workflow (appears in the GitHub Actions tab)
+name: CI - Basic Pipeline
+
+# Trigger: Run this workflow on every push to any branch
+on:
+  push:
+
+# Define the jobs that will run
+jobs:
+  # The first job (you can name this whatever you want)
+  build-and-test:
+    # The type of virtual machine to run on
+    runs-on: ubuntu-latest
+
+    # The steps to execute in this job
+    steps:
+      # Step 1: Checkout your repository's code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js (even if you don't use Node, this shows how to set up a language)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 3: Print some information (just to prove it's working)
+      - name: Show directory contents
+        run: |
+          echo "📂 Current directory:"
+          ls -la
+          echo "✅ Pipeline is running successfully!"
+
+      # Step 4: Run a fake test (simulates running tests)
+      - name: Run tests
+        run: |
+          echo "🧪 Running tests..."
+          echo "All tests passed! ✅"
